@@ -36,7 +36,9 @@ android {
     }
 }
 
-dependencies {implementation(platform("com.google.firebase:firebase-bom:34.7.0"))
+dependencies {
+implementation("androidx.fragment:fragment-ktx:1.8.9")
+implementation(platform("com.google.firebase:firebase-bom:34.7.0"))
     implementation("com.google.firebase:firebase-messaging")
     implementation("com.google.firebase:firebase-firestore")
     implementation(platform(libs.androidx.compose.bom))
