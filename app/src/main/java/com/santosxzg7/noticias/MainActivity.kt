@@ -35,7 +35,7 @@ private var initialLoadFinished = false
 private var mainFrameFailed = false
 
 // Guarda o pedido de arquivo feito pelo site.
-private var filePathCallback: ValueCallback\<Array<Uri>>? = null
+private var filePathCallback: ValueCallback<Array<Uri>>? = null
 
 // Abre o seletor nativo do Android e devolve o arquivo escolhido ao site.
 private val fileChooserLauncher =
@@ -153,13 +153,13 @@ override fun onCreate(savedInstanceState: Bundle?) {
 
     /*
      * Mantém o WebChromeClient que o app já usava,
-     * acrescentando somente o suporte ao \<input type="file">.
+     * acrescentando somente o suporte ao <input type="file">.
      */
     webView.webChromeClient = object : WebChromeClient() {
 
         override fun onShowFileChooser(
             webView: WebView?,
-            filePathCallback: ValueCallback\<Array<Uri>>?,
+            filePathCallback: ValueCallback<Array<Uri>>?,
             fileChooserParams: FileChooserParams?
         ): Boolean {
 
