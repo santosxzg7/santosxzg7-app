@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "92534571900",
+    "project_id": "central-santosxzg7",
+    "storage_bucket": "central-santosxzg7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:92534571900:android:a94f03db789ab847361af9",
+        "android_client_info": {
+          "package_name": "com.santosxzg7.noticias"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-PMqaQvBbXLyL3uaf_FM_I9sEwQyRPPk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
