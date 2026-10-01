@@ -1,4 +1,4 @@
-name: Compilar APK de Teste
+name: Compilar APK Assinado
 
 on:
   workflow_dispatch:
@@ -17,17 +17,33 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Preparar Gradle
+      - name: Configurar Gradle
         uses: gradle/actions/setup-gradle@v4
+
+      - name: Restaurar chave de assinatura
+        shell: bash
+        env:
+          KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+        run: |
+          echo "$KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/santosxzg7-release.jks"
 
       - name: Permitir execução do Gradle
         run: chmod +x gradlew
 
-      - name: Compilar APK Debug
-        run: ./gradlew assembleDebug
+      - name: Compilar APK Release assinado
+        env:
+          KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          ./gradlew assembleRelease \
+            -Pandroid.injected.signing.store.file="$RUNNER_TEMP/santosxzg7-release.jks" \
+            -Pandroid.injected.signing.store.password="$KEYSTORE_PASSWORD" \
+            -Pandroid.injected.signing.key.alias="$KEY_ALIAS" \
+            -Pandroid.injected.signing.key.password="$KEY_PASSWORD"
 
-      - name: Salvar APK
+      - name: Enviar APK
         uses: actions/upload-artifact@v4
         with:
-          name: SANTOSXZG7-APK-TESTE
-          path: app/build/outputs/apk/debug/*.apk
+          name: SANTOSXZG7-v1.0.5-ASSINADO
+          path: app/build/outputs/apk/release/*.apk
