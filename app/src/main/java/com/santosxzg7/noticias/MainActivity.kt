@@ -348,7 +348,7 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun showLoading() {
-        webView.visibility = View.INVISIBLE
+        webView.visibility = View.VISIBLE
         errorView.visibility = View.GONE
         loadingView.visibility = View.VISIBLE
     }
